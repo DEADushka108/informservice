@@ -1,0 +1,33 @@
+.page-header {
+  width: auto;
+  margin: 0 auto;
+  padding-top: 40px;
+}
+
+.page-header__wrapper {
+  min-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.page-header__logo {
+  text-align: center;
+  font-size: 40px;
+  line-height: 60px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $text-light-blue;
+
+  &:hover {
+    color: $text-blue;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+
+  &--active {
+    pointer-events: none;
+    cursor: default;
+  }
+}

@@ -1,0 +1,50 @@
+.main-nav {
+  width: 960px;
+  margin: 40px auto;
+}
+
+.main-nav__item {
+  position: relative;
+}
+
+.main-nav__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.main-nav__link {
+  text-decoration: none;
+  color: $text-light-blue;
+  line-height: 30px;
+
+  &:hover {
+    color: $text-blue;
+    text-decoration: underline;
+  }
+
+  &:active {
+    opacity: 0.3;
+  }
+
+  &--active {
+    color: $text-blue;
+    text-decoration: underline;
+    pointer-events: none;
+    cursor: default;
+  }
+}
+
+.main-nav__text {
+  display: block;
+  font-size: 24px;
+}
+
+.main-nav__sub {
+  position: absolute;
+  top: -15px;
+  right: -10px;
+}
