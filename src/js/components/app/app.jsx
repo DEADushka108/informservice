@@ -1,4 +1,5 @@
 import React from 'react';
+import 'regenerator-runtime/runtime';
 import Main from '../main/main.jsx';
 import {Router, Switch, Route} from 'react-router-dom';
 import history from '../../history/history';

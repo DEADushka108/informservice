@@ -9,7 +9,7 @@ const RoutingScreen = (props) => {
 
   return <React.Fragment>
     <Header path={path}/>
-    <main>
+    <main className="page-main">
       <h1>Routing</h1>
     </main>
     <Footer/>

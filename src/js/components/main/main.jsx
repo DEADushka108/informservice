@@ -9,7 +9,7 @@ const Main = (props) => {
 
   return <React.Fragment>
     <Header path={path}/>
-    <main>
+    <main className="page-main">
       <h1>Ghbdtn</h1>
     </main>
     <Footer/>
