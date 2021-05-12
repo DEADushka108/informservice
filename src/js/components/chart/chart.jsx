@@ -11,7 +11,14 @@ class Chart extends PureComponent {
   render() {
     const {users} = this.props;
 
-    return <OrganizationChart datasource={users} draggable={true} chartClass="chart" NodeTemplate={ChartNode}/>;
+    return <OrganizationChart
+      datasource={users}
+      draggable={true}
+      collapsible={false}
+      pan={true}
+      chartClass="chart"
+      NodeTemplate={ChartNode}
+    />;
   }
 }
 
