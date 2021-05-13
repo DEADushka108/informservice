@@ -13,6 +13,7 @@ const Chart = (props) => {
   const [selectedUser, setSelectedUser] = useState(``);
   const [newUserName, setNewUserName] = useState(``);
   const [newUserTitle, setNewUserTitle] = useState(``);
+  const [newUser, setNewUser] = useState([{name: ``, title: ``}]);
   const [isEditMode, setIsEditMode] = useState(true);
 
   const readSelectedUser = (userData) => {
@@ -31,13 +32,37 @@ const Chart = (props) => {
     setNewUserName(evt.target.value);
   };
 
+  const onNewUserNameChange = (evt) => {
+    newUser[0].name = evt.target.value;
+    setNewUser([...newUser]);
+  };
+
   const onTitleChange = (evt) => {
     setNewUserTitle(evt.target.value);
+  };
+
+  const onNewUserTitleChange = (evt) => {
+    newUser[0].title = evt.target.value;
+    setNewUser([...newUser]);
   };
 
   const updateUser = async () => {
     await usersDigger.updateNodes([...selectedUser].map((user) => user.id), {id: uuidv4(), name: newUserName, title: newUserTitle, photo: `https://i.pravatar.cc/70`});
     setUsersList({...usersDigger.ds});
+  };
+
+  const getNewUser = () => {
+    const newUsers = [];
+    for (const user of newUser) {
+      newUsers.push({...user, id: uuidv4(), photo: `https://i.pravatar.cc/70`});
+    }
+    return newUsers;
+  };
+
+  const addNewUser = async () => {
+    await usersDigger.addChildren([...selectedUser][0].id, getNewUser());
+    setUsersList({...usersDigger.ds});
+    setNewUser([{name: ``, title: ``}]);
   };
 
   const deleteUser = async () => {
@@ -50,13 +75,13 @@ const Chart = (props) => {
     setIsEditMode(!isEditMode);
     if (isEditMode) {
       orgchart.current.expandAllNodes();
-    };
+    }
     if (!isEditMode) {
       clearSelectedUser();
-    };
+    }
   };
 
-  return ( <Fragment>
+  return (<Fragment>
     <div className="chart">
       <div className="chart__edit">
         <button type="button" onClick={onModeChange}>
@@ -73,13 +98,13 @@ const Chart = (props) => {
             <p className="user-info__title">
               {user.title}
             </p>
-          </article>
+          </article>;
         })}
       </div>
       <div className="chart__edit-user">
         <h4 className="chart__edit-title">New data</h4>
-          <input type="text" placeholder="name" value={newUserName} onChange={onNameChange} required/>
-          <input type="text" placeholder="title" value={newUserTitle} onChange={onTitleChange} required/>
+        <input type="text" placeholder="name" value={newUserName} onChange={onNameChange} required/>
+        <input type="text" placeholder="title" value={newUserTitle} onChange={onTitleChange} required/>
       </div>
       <div className="chart__edit-controls">
         <button type="button" disabled={!newUserName} onClick={updateUser}>
@@ -88,23 +113,35 @@ const Chart = (props) => {
         <button type="button" className="chart__edit-button" disabled={!selectedUser} onClick={deleteUser}>
           Delete user
         </button>
+        <div className="chart__new-user">
+          <div className="chart__new-wrapper">
+            <h4 className="chart__new-title">New employee</h4>
+            <input type="text" placeholder="name" value={newUser[0].name} onChange={onNewUserNameChange} required/>
+            <input type="text" placeholder="title" value={newUser[0].title} onChange={onNewUserTitleChange} required/>
+          </div>
+          <div className="chart__new-controls">
+            <button type="button" className="chart__add-button" onClick={addNewUser}>
+              Add employee
+            </button>
+          </div>
+        </div>
       </div>
       </Fragment>
-    }
+      }
     </div>
     <OrganizationChart
-    ref={orgchart}
-    datasource={usersList}
-    draggable={isEditMode}
-    collapsible={isEditMode}
-    pan={true}
-    chartClass="chart"
-    NodeTemplate={ChartNode}
-    onClickNode={readSelectedUser}
-    onClickChart={clearSelectedUser}
-  />;
+      ref={orgchart}
+      datasource={usersList}
+      draggable={isEditMode}
+      collapsible={isEditMode}
+      pan={true}
+      chartClass="chart"
+      NodeTemplate={ChartNode}
+      onClickNode={readSelectedUser}
+      onClickChart={clearSelectedUser}
+    />;
   </Fragment>
-  )
+  );
 };
 
 Chart.propTypes = {
