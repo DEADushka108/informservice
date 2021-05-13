@@ -12,12 +12,12 @@ const ChartNode = (props) => {
       <div className="chart__name">
         <p className="chart__text">{nodeData.name}</p>
         <img className="chart__photo" src={nodeData.photo} width="35" height="35" alt="User's photo"/>
+        {nodeData.children && nodeData.children.length !== 0 ? <svg width="13" height="13" viewBox="0 0 25.96 25.96" className="chart__icon">
+          <use xlinkHref="#social-group"></use>
+        </svg>
+          :
+          null}
       </div>
-      {nodeData.children && nodeData.children.length !== 0 ? <svg width="13" height="13" viewBox="0 0 25.96 25.96" className="chart__icon">
-        <use xlinkHref="#social-group"></use>
-      </svg>
-        :
-        null}
     </div>
   );
 };

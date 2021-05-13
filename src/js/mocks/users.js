@@ -1,6 +1,6 @@
 export const users = {
   id: `n1`,
-  name: `Petr Ivanov`,
+  name: `Alla Ivanova`,
   title: `CEO`,
   photo: `https://i.pravatar.cc/70?img=1`,
   children: [
@@ -24,7 +24,7 @@ export const users = {
         },
         {
           id: `n5`,
-          name: `Andrey Mihailov`,
+          name: `Vera Mihailova`,
           title: `senior engineer`,
           photo: `https://i.pravatar.cc/70?img=5`,
           children: [
@@ -52,13 +52,13 @@ export const users = {
     },
     {
       id: `n9`,
-      name: `Mark Grigoriev`,
+      name: `Anna Grigorieva`,
       title: `department manager`,
       photo: `https://i.pravatar.cc/70?img=9`,
     },
     {
       id: `n10`,
-      name: `Grigoriy Markov`,
+      name: `Ludmila Markova`,
       title: `department manager`,
       photo: `https://i.pravatar.cc/70?img=10`,
       children: [
