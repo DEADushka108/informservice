@@ -1,0 +1,52 @@
+.orgchart-container {
+  border: none;
+  height: 100%;
+}
+
+.orgchart.chart {
+  background-image: none; // linear-gradient(90deg, rgba(33, 90, 136, 0.15) 10%, rgba(0, 0, 0, 0) 10%), 
+  //linear-gradient(rgba(33, 90, 136, 0.15) 10%, rgba(0, 0, 0, 0) 10%) !important; 
+  // web-background for visual comfort
+}
+
+.orgchart.chart > ul > li > ul li::before {
+  border-top-color: $bg-dark-blue;
+}
+
+.orgchart.chart > ul > li > ul li .oc-node::before,
+.orgchart.chart ul li .oc-node:not(:only-child)::after {
+  background-color: $bg-dark-blue;
+}
+
+.orgchart.chart .oc-node .chart__title {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-self: center;
+  background-color: $bg-blue;
+  color: $text-white;
+  width: 130px;
+  height: 50px;
+  padding: 2px;
+}
+
+
+.orgchart.chart .oc-node .chart__name {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  color: $text-blue;
+  background-color: $bg-white;
+  width: 130px;
+  height: 65px;
+  padding: 2px;
+  border: 1px solid $bg-blue;
+}
+

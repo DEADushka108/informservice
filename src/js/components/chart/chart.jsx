@@ -15,6 +15,7 @@ const Chart = (props) => {
   const [newUserTitle, setNewUserTitle] = useState(``);
   const [newUser, setNewUser] = useState([{name: ``, title: ``}]);
   const [isEditMode, setIsEditMode] = useState(true);
+  const [isUpdate, setIsUpdate] = useState(true);
 
   const readSelectedUser = (userData) => {
     setSelectedUser(new Set([userData]));
@@ -81,51 +82,83 @@ const Chart = (props) => {
     }
   };
 
+  const onUpdateModeChange = () => {
+    setIsUpdate(!isUpdate);
+  };
+
   return (<Fragment>
     <div className="chart">
       <div className="chart__edit">
-        <button type="button" onClick={onModeChange}>
-          {isEditMode ? <p className="chart__text chart__text--on">On</p> : <p className="chart__text chart__text--off">Off</p>}
+        <p className="chart__edit-toggle">Edit mode: </p>
+        <button type="button" className={`chart__edit-button ${isEditMode ? `chart__edit-button--on` : `chart__edit-button--off`}`} onClick={onModeChange}>
+          {isEditMode ? `On` : `Off`}
         </button>
       </div>
-      {isEditMode && <Fragment><div className="chart__user">
-        {Array.from(selectedUser).map((user) => {
-          return <article key={user.id} className="chart__user-info user-info">
-            <img className="user-info__photo" src={user.photo} alt="User photo"/>
-            <p className="user-info__name">
-              {user.name}
-            </p>
-            <p className="user-info__title">
-              {user.title}
-            </p>
-          </article>;
-        })}
-      </div>
-      <div className="chart__edit-user">
-        <h4 className="chart__edit-title">New data</h4>
-        <input type="text" placeholder="name" value={newUserName} onChange={onNameChange} required/>
-        <input type="text" placeholder="title" value={newUserTitle} onChange={onTitleChange} required/>
-      </div>
-      <div className="chart__edit-controls">
-        <button type="button" disabled={!newUserName} onClick={updateUser}>
-          Update user
-        </button>
-        <button type="button" className="chart__edit-button" disabled={!selectedUser} onClick={deleteUser}>
-          Delete user
-        </button>
-        <div className="chart__new-user">
-          <div className="chart__new-wrapper">
-            <h4 className="chart__new-title">New employee</h4>
-            <input type="text" placeholder="name" value={newUser[0].name} onChange={onNewUserNameChange} required/>
-            <input type="text" placeholder="title" value={newUser[0].title} onChange={onNewUserTitleChange} required/>
-          </div>
-          <div className="chart__new-controls">
-            <button type="button" className="chart__add-button" onClick={addNewUser}>
-              Add employee
+      {isEditMode && <Fragment>
+        <div className="chart__wrapper">
+          <div className="chart__user-details">
+            {!selectedUser ? <article className="chart__user-info user-info">
+              <img className="user-info__photo" width="70px" height="70px" src="./img/content/no-user.png" alt="User photo"/>
+              <p className="user-info__name"> Name: default</p>
+              <p className="user-info__title">Title: default</p>
+            </article>
+              :
+              Array.from(selectedUser).map((user) => {
+                return <article key={user.id} className="chart__user-info user-info">
+                  <img className="user-info__photo" width="70px" height="70px" src={user.photo} alt="User photo"/>
+                  <p className="user-info__name"> Name: {user.name}</p>
+                  <p className="user-info__title">Title: {user.title}</p>
+                </article>;
+              })
+            }
+            <button className="chart__update-mode" type="button" onClick={onUpdateModeChange}>
+              <span className="visually-hidden">Update mode</span>
+              <svg width="19" height="20" viewBox="0 0 19 20" className="chart__update-icon">
+                <use xlinkHref="#add"></use>
+              </svg>
             </button>
           </div>
+          {isUpdate && <div className="chart__edit-user">
+            <h4 className="chart__edit-title">Update info</h4>
+            <div className="chart__edit-wrapper">
+              <p className="chart__edit-item">
+                <label className="chart__edit-label" htmlFor="name">Name</label>
+                <input className="chart__edit-input" type="text" id="name" placeholder="name" value={newUserName} onChange={onNameChange} required/>
+              </p>
+              <p className="chart__edit-item">
+                <label className="chart__edit-label" htmlFor="title">Title</label>
+                <input className="chart__edit-input" type="text" id="title" placeholder="title" value={newUserTitle} onChange={onTitleChange} required/>
+              </p>
+            </div>
+            <div className="chart__edit-controls">
+              <button type="button" className="chart__update-button" disabled={!selectedUser} onClick={updateUser}>
+                Update user
+              </button>
+              <button type="button" className="chart__delete-button" disabled={!selectedUser} onClick={deleteUser}>
+                Delete user
+              </button>
+            </div>
+          </div>
+          }
+          <div className="chart__new-user">
+            <h4 className="chart__new-title">New employee</h4>
+            <div className="chart__new-wrapper">
+              <p className="chart__new-item">
+                <label className="chart__new-label" htmlFor="new-name">Name:</label>
+                <input className="chart__new-input" id="new-name" type="text" placeholder="name" value={newUser[0].name} onChange={onNewUserNameChange} required/>
+              </p>
+              <p className="chart__new-item">
+                <label className="chart__new-label" htmlFor="new-title">Title:</label>
+                <input className="chart__new-input" id="new-title" type="text" placeholder="title" value={newUser[0].title} onChange={onNewUserTitleChange} required/>
+              </p>
+            </div>
+            <div className="chart__new-controls">
+              <button type="button" className="chart__add-button" disabled={!selectedUser} onClick={addNewUser}>
+                  Add employee
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
       </Fragment>
       }
     </div>
@@ -134,7 +167,7 @@ const Chart = (props) => {
       datasource={usersList}
       draggable={isEditMode}
       collapsible={isEditMode}
-      pan={true}
+      pan={isEditMode}
       chartClass="chart"
       NodeTemplate={ChartNode}
       onClickNode={readSelectedUser}
