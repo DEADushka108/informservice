@@ -1,12 +1,15 @@
 import React, {Fragment, useRef, useState} from 'react';
+import PropTypes from 'prop-types';
 import {userDetails} from '../../types/user';
 import OrganizationChart from '@dabeng/react-orgchart';
 import ChartNode from '../chart-node/chart-node';
 import JSONDigger from 'json-digger';
 import {v4 as uuidv4} from 'uuid';
+import {ActionCreator} from '../../store/users/users';
+import {connect} from 'react-redux';
 
 const Chart = (props) => {
-  const {users} = props;
+  const {users, onSaveChart} = props;
   const orgchart = useRef();
   const [usersList, setUsersList] = useState(users);
   const usersDigger = new JSONDigger(usersList, `id`, `children`);
@@ -14,13 +17,14 @@ const Chart = (props) => {
   const [newUserName, setNewUserName] = useState(``);
   const [newUserTitle, setNewUserTitle] = useState(``);
   const [newUser, setNewUser] = useState([{name: ``, title: ``}]);
-  const [isEditMode, setIsEditMode] = useState(true);
-  const [isUpdate, setIsUpdate] = useState(true);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [isUpdate, setIsUpdate] = useState(false);
 
   const readSelectedUser = (userData) => {
     setSelectedUser(new Set([userData]));
     setNewUserName(userData.name);
     setNewUserTitle(userData.title);
+    setIsUpdate(false);
   };
 
   const clearSelectedUser = () => {
@@ -74,6 +78,7 @@ const Chart = (props) => {
 
   const onModeChange = () => {
     setIsEditMode(!isEditMode);
+    setUsersList(users);
     if (isEditMode) {
       orgchart.current.expandAllNodes();
     }
@@ -84,6 +89,12 @@ const Chart = (props) => {
 
   const onUpdateModeChange = () => {
     setIsUpdate(!isUpdate);
+  };
+
+  const onSaveButtonClick = () => {
+    onSaveChart(usersList);
+    localStorage.setItem(`users`, JSON.stringify(usersList));
+    onModeChange();
   };
 
   return (<Fragment>
@@ -111,10 +122,10 @@ const Chart = (props) => {
                 </article>;
               })
             }
-            <button className="chart__update-mode" type="button" onClick={onUpdateModeChange}>
+            <button className={`chart__update-mode ${isUpdate ? `chart__update-mode--on` : `chart__update-mode--off`}`} type="button" onClick={onUpdateModeChange}>
               <span className="visually-hidden">Update mode</span>
-              <svg width="19" height="20" viewBox="0 0 19 20" className="chart__update-icon">
-                <use xlinkHref="#add"></use>
+              <svg width="20" height="20" viewBox="0 0 330 330" className="chart__update-icon">
+                <use xlinkHref="#info"></use>
               </svg>
             </button>
           </div>
@@ -140,7 +151,7 @@ const Chart = (props) => {
             </div>
           </div>
           }
-          <div className="chart__new-user">
+          {!isUpdate && <div className="chart__new-user">
             <h4 className="chart__new-title">New employee</h4>
             <div className="chart__new-wrapper">
               <p className="chart__new-item">
@@ -157,7 +168,7 @@ const Chart = (props) => {
                   Add employee
               </button>
             </div>
-          </div>
+          </div>}
         </div>
       </Fragment>
       }
@@ -167,18 +178,30 @@ const Chart = (props) => {
       datasource={usersList}
       draggable={isEditMode}
       collapsible={isEditMode}
-      pan={isEditMode}
+      pan={true}
       chartClass="chart"
       NodeTemplate={ChartNode}
       onClickNode={readSelectedUser}
       onClickChart={clearSelectedUser}
     />;
+    <div className="chart__save-controls">
+      <button className="chart__save-button" type="button" disabled={!isEditMode} onClick={onSaveButtonClick}>
+        Save orgchart
+      </button>
+    </div>
   </Fragment>
   );
 };
 
 Chart.propTypes = {
   users: userDetails,
+  onSaveChart: PropTypes.func.isRequired,
 };
 
-export default Chart;
+const mapDispathToProps = (dispatch) => ({
+  onSaveChart(usersList) {
+    dispatch(ActionCreator.updateUsers(usersList));
+  }
+});
+
+export default connect(null, mapDispathToProps)(Chart);
