@@ -2,15 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../header/header';
 import Footer from '../footer/footer';
+import {connect} from 'react-redux';
+import {getUsersList} from '../../store/users/selectors';
+import {userDetails} from '../../types/user';
+import Chart from '../chart/chart';
 
 const Orgchart = (props) => {
-  const {match} = props;
+  const {match, users} = props;
   const {path} = match;
 
   return <React.Fragment>
     <Header path={path}/>
-    <main>
-      <h1>Orgchart</h1>
+    <main className="page-main">
+      <h1 className="visually-hidden">Orgchart</h1>
+      <Chart users={users}/>
     </main>
     <Footer/>
   </React.Fragment>;
@@ -19,7 +24,12 @@ const Orgchart = (props) => {
 Orgchart.propTypes = {
   match: PropTypes.shape({
     path: PropTypes.string,
-  })
+  }),
+  users: userDetails,
 };
 
-export default Orgchart;
+const mapStateToProps = (state) => ({
+  users: getUsersList(state),
+});
+
+export default connect(mapStateToProps)(Orgchart);

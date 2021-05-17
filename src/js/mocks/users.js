@@ -1,61 +1,72 @@
 export const users = {
-  id: `1`,
-  name: `Petr Ivanov`,
+  id: `n1`,
+  name: `Alla Ivanova`,
   title: `CEO`,
+  photo: `https://i.pravatar.cc/70?img=1`,
   children: [
     {
-      id: `2`,
+      id: `n2`,
       name: `Ivan Petrov`,
-      title: `department manager`
+      title: `department manager`,
+      photo: `https://i.pravatar.cc/70?img=2`,
     },
     {
-      id: `3`,
+      id: `n3`,
       name: `Sergey Alekseev`,
       title: `department manager`,
+      photo: `https://i.pravatar.cc/70?img=3`,
       children: [
         {
-          id: `4`,
+          id: `n4`,
           name: `Aleksey Sergeev`,
-          title: `senior engineer`
+          title: `senior engineer`,
+          photo: `https://i.pravatar.cc/70?img=4`,
         },
         {
-          id: `5`,
-          name: `Andrey Mihailov`,
+          id: `n5`,
+          name: `Vera Mihailova`,
           title: `senior engineer`,
+          photo: `https://i.pravatar.cc/70?img=5`,
           children: [
             {
-              id: `6`,
+              id: `n6`,
               name: `Mihail Andreev`,
-              title: `engineer`
+              title: `engineer`,
+              photo: `https://i.pravatar.cc/70?img=6`,
             },
             {
-              id: `7`,
+              id: `n7`,
               name: `Anatoliy Petrov`,
-              title: `engineer`
+              title: `engineer`,
+              photo: `https://i.pravatar.cc/70?img=7`,
             }
           ]
         },
         {
-          id: `8`,
+          id: `n8`,
           name: `Petr Anatoliev`,
-          title: `senior engineer`
+          title: `senior engineer`,
+          photo: `https://i.pravatar.cc/70?img=8`,
         }
       ]
     },
     {
-      id: `9`,
-      name: `Mark Grigoriev`,
-      title: `department manager`
+      id: `n9`,
+      name: `Anna Grigorieva`,
+      title: `department manager`,
+      photo: `https://i.pravatar.cc/70?img=9`,
     },
     {
-      id: `10`,
-      name: `Grigoriy Markov`,
+      id: `n10`,
+      name: `Ludmila Markova`,
       title: `department manager`,
+      photo: `https://i.pravatar.cc/70?img=10`,
       children: [
         {
-          id: `11`,
+          id: `n11`,
           name: `Andrey Kuznetsov`,
-          title: `senior engineer`
+          title: `senior engineer`,
+          photo: `https://i.pravatar.cc/70?img=11`,
         }
       ]
     }
