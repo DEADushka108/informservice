@@ -1,0 +1,42 @@
+.route-nav__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.route-nav__item {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 200px;
+  min-height: 100px;
+  background-color: $bg-blue;
+  color: $text-white;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  cursor: pointer;
+
+  &--active {
+    background-color: $bg-white;
+    color: $text-blue;
+    box-shadow: 5px 10px 20px rgba(53, 110, 173, 0.2);
+    cursor: default;
+  }
+
+  &:hover {
+    color: $text-blue;
+    background-color: $bg-white;
+    box-shadow: 5px 10px 20px rgba(53, 110, 173, 0.2);
+  }
+
+  &:not(:last-child)::after {
+    position: absolute;
+    content: "↓";
+    bottom: -30px;
+    left: 50%;
+    color: $text-blue;
+  }
+}

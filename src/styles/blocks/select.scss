@@ -1,0 +1,21 @@
+.select-container {
+  position: relative;
+  width: 70%;
+  margin-bottom: 40px;
+}
+
+.select-container .select__control {
+  border: 1px solid $bg-blue;
+
+  &:hover {
+    border-color: $bg-dark-blue;
+  }
+}
+
+.select__indicators .select__indicator-separator {
+  background-color: $bg-blue;
+}
+
+.select__indicators .select__dropdown-indicator {
+  color: $bg-blue;
+}
