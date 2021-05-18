@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../header/header';
 import Footer from '../footer/footer';
+import RouteCard from '../route-card/route-card';
 
 const RoutingScreen = (props) => {
   const {match} = props;
@@ -10,7 +11,8 @@ const RoutingScreen = (props) => {
   return <React.Fragment>
     <Header path={path}/>
     <main className="page-main">
-      <h1>Routing</h1>
+      <h1 className="visually-hidden">Routing</h1>
+      <RouteCard />
     </main>
     <Footer/>
   </React.Fragment>;

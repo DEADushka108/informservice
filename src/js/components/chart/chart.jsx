@@ -183,7 +183,7 @@ const Chart = (props) => {
       NodeTemplate={ChartNode}
       onClickNode={readSelectedUser}
       onClickChart={clearSelectedUser}
-    />;
+    />
     <div className="chart__save-controls">
       <button className="chart__save-button" type="button" disabled={!isEditMode} onClick={onSaveButtonClick}>
         Save orgchart
