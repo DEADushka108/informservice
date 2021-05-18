@@ -6,7 +6,7 @@ import Select from 'react-select';
 
 
 const RouteCard = () => {
-  const [activeItem, setActiveItem] = useState(TabNames.NOTIFICATION);
+  const [activeItem, setActiveItem] = useState(TabNames.CREATE);
   const [routeOptions, setRouteOptions] = useState(null);
   const [routeName, setRouteName] = useState(``);
   const [routeDescription, setRouteDescription] = useState(``);
