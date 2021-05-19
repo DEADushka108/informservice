@@ -22,7 +22,7 @@ const ConfirmCard = (props) => {
   } = props;
 
   const onConfirmButtonClick = () => {
-    onConfirmRoute({
+    const route = {
       id: uuidv4(),
       type: routeOptions,
       name: routeName,
@@ -33,7 +33,9 @@ const ConfirmCard = (props) => {
       messageOption,
       message,
       registration,
-    });
+    };
+    onConfirmRoute(route);
+    localStorage.setItem(`route`, JSON.stringify(route));
     onValidRouteConfirm(AppRoute.ROOT);
   };
 
