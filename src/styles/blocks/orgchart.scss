@@ -1,12 +1,11 @@
 .orgchart-container {
-  // border: none;
   height: 100%;
+  font-size: 14px;
+  line-height: 16px;
 }
 
 .orgchart.chart {
-  background-image: none; // linear-gradient(90deg, rgba(33, 90, 136, 0.15) 10%, rgba(0, 0, 0, 0) 10%),
-  //linear-gradient(rgba(33, 90, 136, 0.15) 10%, rgba(0, 0, 0, 0) 10%) !important;
-  // web-background for visual comfort
+  background-image: none;
 }
 
 .orgchart.chart > ul > li > ul li::before {

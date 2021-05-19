@@ -15,7 +15,6 @@
   align-content: center;
   align-items: center;
   width: 700px;
-  min-height: 600px;
   margin-left: 40px;
   border-radius: 5px;
   box-shadow: 5px 10px 20px rgba(53, 110, 173, 0.2);
@@ -49,6 +48,7 @@
   border: none;
   min-width: 200px;
   padding: 16px 20px;
+  margin-bottom: 30px;
   color: $text-white;
   background-color: $bg-blue;
   cursor: pointer;
@@ -56,6 +56,10 @@
 
   &:hover {
     background-color: $bg-dark-blue;
+  }
+
+  &--confirm {
+    align-self: center;
   }
 }
 

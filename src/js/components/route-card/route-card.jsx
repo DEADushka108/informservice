@@ -1,8 +1,9 @@
 import React, {Fragment, useState} from 'react';
-import {TabNames, options, unitOptions, subOptions, messageOptions} from '../../utils/const';
+import {TabNames, options, unitOptions, subOptions, messageOptions, regOptions} from '../../utils/const';
 import Tab from '../tab/tab';
 import Tabs from '../tabs/tabs';
 import Select from 'react-select';
+import ConfirmCard from '../confirm-card/confirm-card';
 
 
 const RouteCard = () => {
@@ -15,6 +16,7 @@ const RouteCard = () => {
   const [division, setDivision] = useState(null);
   const [messageOption, setMessageOption] = useState(null);
   const [message, setMessage] = useState(``);
+  const [registration, setRegistration] = useState(null);
 
   const handleActiveItemChange = (title) => {
     setActiveItem(title);
@@ -109,7 +111,7 @@ const RouteCard = () => {
               }}/>
             </div>
             <button type="button" className="route-card__next-button" onClick={() => {
-              handleActiveItemChange(TabNames.SUBSCRIBE);
+              handleActiveItemChange(TabNames.REGISTRATION);
             }}>
               Next
             </button>
@@ -118,7 +120,33 @@ const RouteCard = () => {
         <Tab title={TabNames.REGISTRATION}>
           <div className="route-card__content-wrapper">
             <h4>Registration</h4>
+            <Select
+              value={registration}
+              options={regOptions}
+              className="select-container"
+              classNamePrefix="select"
+              onChange={(selectedOption) => {
+                setRegistration(selectedOption);
+              }}/>
+            <button type="button" className="route-card__next-button" onClick={() => {
+              setActiveItem(TabNames.CONFIRM);
+            }}>
+              Next
+            </button>
           </div>
+        </Tab>
+        <Tab title={TabNames.CONFIRM}>
+          <ConfirmCard
+            routeOptions={routeOptions}
+            routeName={routeName}
+            routeDescription={routeDescription}
+            subUnit={subUnit}
+            unit={unit}
+            division={division}
+            messageOption={messageOption}
+            message={message}
+            registration={registration}
+          />
         </Tab>
       </Tabs>
     </section>

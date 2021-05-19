@@ -8,8 +8,8 @@ export const TabNames = {
   CREATE: `Create`,
   AGREEMENT: `Agreement`,
   NOTIFICATION: `Notification`,
-  SUBSCRIBE: `Subscribe`,
   REGISTRATION: `Registartion`,
+  CONFIRM: `Confirm`,
 };
 
 export const options = [
@@ -31,7 +31,17 @@ export const unitOptions = [
 ];
 
 export const messageOptions = [
+  {value: `none`, label: `None`},
   {value: `all`, label: `To all`},
   {value: `subdivision`, label: `Just for subdivision`},
   {value: `other`, label: `Just for other units`},
+  {value: `recipient`, label: `Just for recipint`},
+  {value: `sender`, label: `Just for sender`},
+];
+
+export const regOptions = [
+  {value: `none`, label: `None`},
+  {value: `all`, label: `Both side registration`},
+  {value: `outgoing`, label: `Outgoing registration`},
+  {value: `incoming`, label: `Incoming registration`},
 ];
