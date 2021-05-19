@@ -14,8 +14,10 @@ const Orgchart = (props) => {
   return <React.Fragment>
     <Header path={path}/>
     <main className="page-main">
-      <h1 className="visually-hidden">Orgchart</h1>
-      <Chart users={users}/>
+      <div className="page-main__wrapper">
+        <h1 className="visually-hidden">Orgchart</h1>
+        <Chart users={users}/>
+      </div>
     </main>
     <Footer/>
   </React.Fragment>;

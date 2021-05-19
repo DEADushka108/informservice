@@ -11,8 +11,10 @@ const RoutingScreen = (props) => {
   return <React.Fragment>
     <Header path={path}/>
     <main className="page-main">
-      <h1 className="visually-hidden">Routing</h1>
-      <RouteCard />
+      <div className="page-main__wrapper">
+        <h1 className="visually-hidden">Routing</h1>
+        <RouteCard />
+      </div>
     </main>
     <Footer/>
   </React.Fragment>;

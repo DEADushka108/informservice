@@ -11,3 +11,11 @@ body {
   color: $text-light-blue;
   background-color: $bg-white;
 }
+
+.wrapper {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  align-items: stretch;
+  align-content: flex-start;
+}
