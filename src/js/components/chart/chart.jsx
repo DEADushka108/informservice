@@ -78,7 +78,6 @@ const Chart = (props) => {
 
   const onModeChange = () => {
     setIsEditMode(!isEditMode);
-    setUsersList(users);
     if (isEditMode) {
       orgchart.current.expandAllNodes();
     }

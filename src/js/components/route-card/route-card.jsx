@@ -27,7 +27,7 @@ const RouteCard = () => {
       <Tabs activeItem={activeItem} onTabChange={handleActiveItemChange}>
         <Tab title={TabNames.CREATE}>
           <div className="route-card__content-wrapper">
-            <h4>Create route</h4>
+            <p className="route-card__title">Create route</p>
             <Select
               value={routeOptions}
               options={options}
@@ -53,7 +53,7 @@ const RouteCard = () => {
         </Tab>
         <Tab title={TabNames.AGREEMENT}>
           <div className="route-card__content-wrapper">
-            <h4>Agreement</h4>
+            <p className="route-card__title">Agreement</p>
             <div className="route-card__subdivision">
               <h5>Subdivision agreement</h5>
               <Select
@@ -95,7 +95,7 @@ const RouteCard = () => {
         </Tab>
         <Tab title={TabNames.NOTIFICATION}>
           <div className="route-card__content-wrapper">
-            <h4> Notification</h4>
+            <p className="route-card__title">Notification</p>
             <div className="route-card__notification">
               <Select
                 value={messageOption}
@@ -119,7 +119,7 @@ const RouteCard = () => {
         </Tab>
         <Tab title={TabNames.REGISTRATION}>
           <div className="route-card__content-wrapper">
-            <h4>Registration</h4>
+            <p className="route-card__title">Registtration</p>
             <Select
               value={registration}
               options={regOptions}

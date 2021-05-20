@@ -20,6 +20,14 @@
   box-shadow: 5px 10px 20px rgba(53, 110, 173, 0.2);
 }
 
+.route-card__title {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 24px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
 .route-card__label {
   align-self: flex-start;
   margin-left: 16%;
@@ -50,12 +58,12 @@
   padding: 16px 20px;
   margin-bottom: 30px;
   color: $text-white;
-  background-color: $bg-blue;
+  background-color: $bg-dark-blue;
   cursor: pointer;
   border-radius: 5px;
 
   &:hover {
-    background-color: $bg-dark-blue;
+    background-color: $bg-blue;
   }
 
   &--confirm {

@@ -42,7 +42,7 @@ const ConfirmCard = (props) => {
   return <Fragment>
     <div className="route-card__content-wrapper confirm">
       <div className="confirm__wrapper">
-        <h4 className="confirm__section-title">Route info</h4>
+        <p className="confirm__section-title">Route info</p>
         {routeOptions && <p className="confirm__route-info">
           <span className="confirm__route-type">Type: </span>
           <span className="confirm__route-value">{routeOptions.label}</span>
@@ -57,7 +57,7 @@ const ConfirmCard = (props) => {
         </p>}
       </div>
       <div className="confirm__wrapper">
-        <h4 className="confirm__section-title">Agreement</h4>
+        <p className="confirm__section-title">Agreement</p>
         {subUnit ? subUnit.value === `necessary` &&
     <Fragment>
       <div className="confirm__agreement-wrapper">
@@ -94,7 +94,7 @@ const ConfirmCard = (props) => {
         }
       </div>
       <div className="confirm__wrapper">
-        <h4 className="confirm__section-title">Recipient</h4>
+        <p className="confirm__section-title">Recipient</p>
         <div className="confirm__recipient-wrapper">
           <p className="confirm__text">Recipient:</p>
           <button className="confirm__select-button" type="button">
@@ -108,7 +108,7 @@ const ConfirmCard = (props) => {
       </div>
       {messageOption ? messageOption.value !== `none` &&
         <div className="confirm__wrapper">
-          <h4 className="confirm__section-title">Notification</h4>
+          <p className="confirm__section-title">Notification</p>
           <p className="confirm__notice-info">
             <span className="confirm__notice-type">Send to: </span>
             <span className="confirm__notice-value">{messageOption.label}</span>
@@ -122,7 +122,7 @@ const ConfirmCard = (props) => {
       }
       {registration ? registration.value !== `none` &&
       <div className="confirm__wrapper">
-        <h4 className="confirm__section-title">Registration</h4>
+        <p className="confirm__section-title">Registration</p>
         <p className="confirm__registration-text">{`This document need ${registration.label.toLowerCase()}`}</p>
       </div>
         : null}

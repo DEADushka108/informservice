@@ -27,7 +27,7 @@ const Main = (props) => {
               <li className="task__item">
                 <p className="task__text">
                   <span className="task__type">Description: </span>
-                  <span className="task__value">Complex instruments for create and edit organization chart</span>
+                  <span className="task__value">Complex instruments for create and edit classical organization chart</span>
                 </p>
               </li>
               <li className="task__item">
